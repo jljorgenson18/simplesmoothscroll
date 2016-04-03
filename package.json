@@ -22,7 +22,5 @@
     "url": "https://github.com/jljorgenson18/simplesmoothscroll/issues"
   },
   "homepage": "https://github.com/jljorgenson18/simplesmoothscroll#readme",
-  "dependencies": {
-    "next-tick": "^0.2.2"
-  }
+  "dependencies": {}
 }

@@ -1,8 +1,5 @@
 "use strict";
 
-// Using next-tick to handle setimmediate polyfills
-var nextTick = require("next-tick");
-
 var getHeightOfEntirePage = function() {
     var body = document.body;
     var html = document.documentElement;
@@ -55,34 +52,33 @@ module.exports = function(ele, offset) {
         window.removeEventListener("wheel", onWheelListener);
     };
     window.addEventListener("wheel", onWheelListener);
-    // Once we get all of the required vars in the closure,
-    // use setTimeout so we don't block the event queue.
-    // Then, perform the scroll
-    nextTick(function() {
-        if (targetPosition < 0) {
-            var stepDownTo = function() {
-                // Checks to see if we hit the bottom
-                var atBottom = ((heightOfWindow + getScrollHeight()) === pageHeight);
-                // Need the - 5 due to the asymptote
-                if (getScrollHeight() < (targetY - 5) && !atBottom && !scrollWheelTouched) {
-                    scrollCount = scrollCount + 1;
-                    scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
-                    window.scrollTo(0, (scrollHeight - scrollMargin));
-                    requestAnimationFrame(stepDownTo);
-                }
-            };
-            requestAnimationFrame(stepDownTo);
-        } else {
-            var stepUpTo = function() {
-                // Need the + 5 due to the asymptote
-                if (getScrollHeight() > (targetY + 5) && !scrollWheelTouched) {
-                    scrollCount = scrollCount + 1;
-                    scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
-                    window.scrollTo(0, (scrollHeight - scrollMargin));
-                    requestAnimationFrame(stepUpTo);
-                }
-            };
-            requestAnimationFrame(stepUpTo);
-        }
-    });
+    // This is where the magic happens. A function is made depending
+    // on if the target postiion is below or above the current window position.
+    // From there, requestAnimationFrame does its magic of calling that
+    // step function over and over until it is close enough to the target
+    if (targetPosition < 0) {
+        var stepDownTo = function() {
+            // Checks to see if we hit the bottom
+            var atBottom = ((heightOfWindow + getScrollHeight()) === pageHeight);
+            // Need the - 5 due to the asymptote
+            if (getScrollHeight() < (targetY - 5) && !atBottom && !scrollWheelTouched) {
+                scrollCount = scrollCount + 1;
+                scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
+                window.scrollTo(0, (scrollHeight - scrollMargin));
+                requestAnimationFrame(stepDownTo);
+            }
+        };
+        requestAnimationFrame(stepDownTo);
+    } else {
+        var stepUpTo = function() {
+            // Need the + 5 due to the asymptote
+            if (getScrollHeight() > (targetY + 5) && !scrollWheelTouched) {
+                scrollCount = scrollCount + 1;
+                scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
+                window.scrollTo(0, (scrollHeight - scrollMargin));
+                requestAnimationFrame(stepUpTo);
+            }
+        };
+        requestAnimationFrame(stepUpTo);
+    }
 };
