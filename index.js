@@ -14,12 +14,15 @@ var getHeightOfWindow = function() {
 
 // Finds the Y-coordinate of your target.
 // Defaults to top of the page
-var getTargetPosition = function(ele, offset = 0) {
-    var targetPosition = window.scrollY;
-    if (ele) {
-        targetPosition = -ele.getBoundingClientRect().top + offset;
+var getTargetPosition = function(ele, offset) {
+    if (!offset) {
+        offset = 0;
     }
-    return targetPosition;
+    if (ele) {
+        return -ele.getBoundingClientRect().top + offset;
+    } else {
+        return window.scrollY;
+    }
 };
 
 // This is the duration
@@ -50,7 +53,7 @@ module.exports = function(ele, offset) {
     };
     window.addEventListener("wheel", onWheelListener);
     // Once we get all of the required vars in the closure,
-    // use next-tick so we don't block the event queue.
+    // use setImmediate so we don't block the event queue.
     // Then, perform the scroll
     setImmediate(function() {
         if (targetPosition < 0) {
