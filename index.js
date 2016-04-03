@@ -1,5 +1,8 @@
 "use strict";
 
+// Using next-tick to handle setimmediate polyfills
+var nextTick = require("next-tick");
+
 var getHeightOfEntirePage = function() {
     var body = document.body;
     var html = document.documentElement;
@@ -55,7 +58,7 @@ module.exports = function(ele, offset) {
     // Once we get all of the required vars in the closure,
     // use setTimeout so we don't block the event queue.
     // Then, perform the scroll
-    setTimeout(function() {
+    nextTick(function() {
         if (targetPosition < 0) {
             var stepDownTo = function() {
                 // Checks to see if we hit the bottom
@@ -81,5 +84,5 @@ module.exports = function(ele, offset) {
             };
             requestAnimationFrame(stepUpTo);
         }
-    }, 0);
+    });
 };

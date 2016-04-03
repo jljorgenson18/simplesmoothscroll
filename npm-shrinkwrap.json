@@ -1,4 +1,11 @@
 {
   "name": "simplesmoothscroll",
-  "version": "1.0.2"
+  "version": "1.0.2",
+  "dependencies": {
+    "next-tick": {
+      "version": "0.2.2",
+      "from": "next-tick@latest",
+      "resolved": "https://registry.npmjs.org/next-tick/-/next-tick-0.2.2.tgz"
+    }
+  }
 }

@@ -10,19 +10,17 @@ Simple smooth scroll takes in a dom element as a param and scrolls to that eleme
 
 ## Usage
 ```js
-var scrollTo = require("simplesmoothscroll");
+var smoothScroll = require("simplesmoothscroll");
 
 var myHeader = document.querySelector("h2");
 
-scrollTo(myHeader);
+smoothScroll(myHeader);
 
 // You can also include an offset so there is some room between
 // the window position and the element
 
-scrollTo(myHeader, 10);
-
+smoothScroll(myHeader, 10);
 ```
-
 
 ## Contributing
 Pull requests are much appreciated and accepted.
