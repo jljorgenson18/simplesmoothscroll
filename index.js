@@ -53,9 +53,9 @@ module.exports = function(ele, offset) {
     };
     window.addEventListener("wheel", onWheelListener);
     // Once we get all of the required vars in the closure,
-    // use setImmediate so we don't block the event queue.
+    // use setTimeout so we don't block the event queue.
     // Then, perform the scroll
-    setImmediate(function() {
+    setTimeout(function() {
         if (targetPosition < 0) {
             var stepDownTo = function() {
                 // Checks to see if we hit the bottom
@@ -81,5 +81,5 @@ module.exports = function(ele, offset) {
             };
             requestAnimationFrame(stepUpTo);
         }
-    });
+    }, 0);
 };
