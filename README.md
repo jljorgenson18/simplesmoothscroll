@@ -1,8 +1,8 @@
 # simplesmoothscroll
-A module to simply scroll to an element on the page in a butter smooth fashion
+A module to simply scroll to an element on the page in a buttery smooth fashion
 
 ## What is it?
-Simple smooth scroll simply takes in an dom element as a param and scrolls to that element in an ease-in-out fashion. It can work on elements that are above the current window position or below the current window position
+Simple smooth scroll takes in a dom element as a param and scrolls to that element in an ease-in-out fashion. It can work on elements that are above the current window position or below the current window position
 
 ## Installation
 `npm install simplesmoothscroll --save`
@@ -10,8 +10,6 @@ Simple smooth scroll simply takes in an dom element as a param and scrolls to th
 
 ## Usage
 ```js
-
-
 var scrollTo = require("simplesmoothscroll");
 
 var myHeader = document.querySelector("h2");
