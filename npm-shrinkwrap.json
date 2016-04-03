@@ -1,6 +1,6 @@
 {
   "name": "simplesmoothscroll",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "dependencies": {
     "next-tick": {
       "version": "0.2.2",
