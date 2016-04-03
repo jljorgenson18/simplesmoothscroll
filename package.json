@@ -1,6 +1,6 @@
 {
   "name": "simplesmoothscroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A function that helps to scroll smoothly to an element",
   "main": "index.js",
   "scripts": {
