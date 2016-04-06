@@ -30,15 +30,20 @@
     <div class="scrollDiv" id="scrollDiv4">Div4</div>
     <div class="scrollDiv" id="scrollDiv5">Div5</div>
     <div class="scrollDiv" id="scrollDiv6">Div6</div>
+    <div class="scrollDiv" id="scrollDiv7">Div7</div>
+    <div class="scrollDiv" id="scrollDiv8">Div8</div>
+    <div class="scrollDiv" id="scrollDiv9">Div9</div>
+    <div class="scrollDiv" id="scrollDiv10">Div10</div>
 
     <script src="../index.js"></script>
     <script>
       var smoothScroll = window.smoothScroll;
+      var numberOfElements = 10;
       var btn = document.getElementById("btn");
       btn.addEventListener("click", function() {
-        var divId = "scrollDiv" + parseInt(Math.ceil(Math.random() * 6));
+        var divId = "scrollDiv" + parseInt(Math.ceil(Math.random() * numberOfElements));
         var div = document.getElementById(divId);
-        smoothScroll(div);
+        smoothScroll(div, 10);
       });
     </script>
 </body>
