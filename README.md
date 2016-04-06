@@ -2,7 +2,7 @@
 A module to simply scroll to an element on the page in a buttery smooth fashion
 
 ## What is it?
-Simple smooth scroll takes in a dom element as a param and scrolls to that element in an ease-in-out fashion. It can work on elements that are above the current window position or below the current window position
+Simple smooth scroll takes in a dom element and scrolls to that element in an ease-in-out fashion. It can work on elements that are above the current window position or below the current window position
 
 ## Installation
 `npm install simplesmoothscroll --save`
@@ -23,7 +23,7 @@ smoothScroll(myHeader, 10);
 ```
 
 ## Contributing
-Pull requests are much appreciated and accepted.
+My goal here is to make the scroll as performant and smooth as possible. If there are optimizations that can be made then feel free to open an issue or submit a pull request.
 
 
 ## License

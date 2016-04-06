@@ -14,7 +14,8 @@
     "scroll",
     "smooth",
     "buttery",
-    "browser"
+    "browser",
+    "jank"
   ],
   "author": "Jesse Jorgenson",
   "license": "MIT",

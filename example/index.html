@@ -1,0 +1,45 @@
+<html>
+<title>Smooth Scroll Demo</title>
+<style>
+  .buttonBar {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+  }
+  .btn {
+    margin: 4px auto;
+  }
+  .scrollDiv {
+    height: 175px;
+    margin: 30px;
+    background: tomato;
+  }
+
+  .scrollDiv:nth-child(even) {
+    background: gold;
+  }
+
+</style>
+<body>
+    <div class="buttonBar">
+      <button id="btn" class="btn">Scroll to random element</button>
+    </div>
+    <div class="scrollDiv" id="scrollDiv1">Div1</div>
+    <div class="scrollDiv" id="scrollDiv2">Div2</div>
+    <div class="scrollDiv" id="scrollDiv3">Div3</div>
+    <div class="scrollDiv" id="scrollDiv4">Div4</div>
+    <div class="scrollDiv" id="scrollDiv5">Div5</div>
+    <div class="scrollDiv" id="scrollDiv6">Div6</div>
+
+    <script src="../index.js"></script>
+    <script>
+      var smoothScroll = window.smoothScroll;
+      var btn = document.getElementById("btn");
+      btn.addEventListener("click", function() {
+        var divId = "scrollDiv" + parseInt(Math.ceil(Math.random() * 6));
+        var div = document.getElementById(divId);
+        smoothScroll(div);
+      });
+    </script>
+</body>
+</html>
