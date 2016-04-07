@@ -20,6 +20,14 @@ smoothScroll(myHeader);
 // the window position and the element
 
 smoothScroll(myHeader, 10);
+
+// If you want to execute a function when the scroll finishes, you can
+// pass in an onScrollFinished callback. A "cancelled" param is passed in
+// as an arg in case the scrolling didn't get all the way to the element
+smoothScroll(myHeader, 10, function(cancelled) {
+  // Your function
+});
+
 ```
 
 ## Contributing
