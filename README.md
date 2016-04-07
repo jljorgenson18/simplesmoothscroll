@@ -12,18 +12,24 @@ Simple smooth scroll takes in a dom element and scrolls to that element in an ea
 ```js
 var smoothScroll = require("simplesmoothscroll");
 
+// Passing in no params scrolls you to the top of the page
+smoothScroll();
+
+// Passing an element as a param scrolls you to that element
 var myHeader = document.querySelector("h2");
 
 smoothScroll(myHeader);
+
 
 // You can also include an offset so there is some room between
 // the window position and the element
 
 smoothScroll(myHeader, 10);
 
+
 // If you want to execute a function when the scroll finishes, you can
 // pass in an onScrollFinished callback. A "cancelled" param is passed in
-// as an arg in case the scrolling didn't get all the way to the element
+// as an arg in case the scroll was cancelled due to user interaction
 smoothScroll(myHeader, 10, function(cancelled) {
   // Your function
 });
