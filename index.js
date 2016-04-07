@@ -86,7 +86,7 @@
         return (targetPosition / 2) * (1 - Math.cos(stepCount * stepSize));
     }
 
-    var smoothScroll = function(ele, offset) {
+    var smoothScroll = function(ele, offset, onScrollFinished) {
         var targetPosition = getScrollTargetPosition(ele, offset);
         var stepSize = getStepSize(targetPosition);
         var initScrollHeight = window.pageYOffset;
@@ -101,18 +101,18 @@
         window.addEventListener("wheel", onWheelListener);
 
         var stepCount = 0;
-        var scrollingFinished;
+        var scrollNotFinished;
 
 
         // Depending on if we are scrolling down or up,
-        // we create a scrollingFinished function to use as
+        // we create a scrollNotFinished function to use as
         // our conditional when doing the raf loop
         if (targetPosition < 0) {
-            scrollingFinished = function() {
+            scrollNotFinished = function() {
                 return window.pageYOffset < (targetY - 5) && !scrollWheelTouched;
             }
         } else {
-            scrollingFinished = function() {
+            scrollNotFinished = function() {
                 return window.pageYOffset > (targetY + 5) && !scrollWheelTouched;
             }
         }
@@ -120,17 +120,19 @@
         // Where the loop actually starts
         var step = function() {
             // Need the - 5 due to the asymptote
-            if (scrollingFinished()) {
+            if (scrollNotFinished()) {
                 stepCount++;
                 window.scrollTo(0, (initScrollHeight - getScrollMargin(targetPosition, stepCount, stepSize)));
                 requestAnimationFrame(step);
+            } else if (onScrollFinished) {
+                onScrollFinished(scrollWheelTouched);
             }
-            //TODO Add a "onScrollFinished" callback
         };
         requestAnimationFrame(step);
 
     };
 
+    /*istanbul ignore next*/
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
         module.exports = smoothScroll;
     } else {

@@ -4,7 +4,7 @@
   "description": "A function that helps to scroll smoothly to an element",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,16 @@
     "url": "https://github.com/jljorgenson18/simplesmoothscroll/issues"
   },
   "homepage": "https://github.com/jljorgenson18/simplesmoothscroll#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-coverage": "^0.5.5",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-fixture": "^0.2.6",
+    "karma-html2js-preprocessor": "^0.1.0",
+    "karma-jasmine": "^0.3.8",
+    "karma-jasmine-html-reporter": "^0.2.0"
+  }
 }
