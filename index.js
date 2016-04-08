@@ -97,7 +97,7 @@
         window.addEventListener("wheel", onWheelListener);
 
         var stepCount = 0;
-        var differenceSize = 2;
+        var roundingSize = 2;
         var scrollNotFinished;
 
 
@@ -106,11 +106,11 @@
         // our conditional when doing the raf loop
         if (targetPosition < 0) {
             scrollNotFinished = function() {
-                return window.pageYOffset < (targetY - differenceSize) && !scrollWheelTouched;
+                return window.pageYOffset < (targetY - roundingSize) && !scrollWheelTouched;
             }
         } else {
             scrollNotFinished = function() {
-                return window.pageYOffset > (targetY + differenceSize) && !scrollWheelTouched;
+                return window.pageYOffset > (targetY + roundingSize) && !scrollWheelTouched;
             }
         }
 
@@ -118,7 +118,6 @@
 
         // Where the loop actually starts
         var step = function() {
-            // Need the - 5 due to the asymptote
             if (scrollNotFinished()) {
                 stepCount++;
                 window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));

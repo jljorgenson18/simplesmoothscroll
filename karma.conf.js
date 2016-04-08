@@ -8,7 +8,9 @@ module.exports = function(config) {
         ],
         browsers: [
             "Chrome",
-            "Firefox"
+            "Firefox",
+            "Safari",
+            "Opera"
         ],
         preprocessors: {
             // source files, that you wanna generate coverage for
@@ -28,6 +30,8 @@ module.exports = function(config) {
             'karma-jasmine',
             'karma-chrome-launcher',
             'karma-firefox-launcher',
+            "karma-opera-launcher",
+            "karma-safari-launcher",
             'karma-jasmine-html-reporter',
             'karma-coverage',
             'karma-html2js-preprocessor'
