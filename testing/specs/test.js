@@ -1,6 +1,7 @@
 describe("SimpleSmoothScroll", function() {
 
     var smoothScroll = window.smoothScroll;
+    var differenceSize = 3;
     var container;
 
     fixture.setBase('testing/fixtures');
@@ -20,7 +21,7 @@ describe("SimpleSmoothScroll", function() {
         window.scrollTo(0, 500);
         expect(window.pageYOffset).toEqual(500);
         smoothScroll(null, 0, function() {
-            expect(window.pageYOffset).toBeLessThan(6);
+            expect(window.pageYOffset).toBeLessThan(differenceSize);
             done();
         });
     });
@@ -32,7 +33,7 @@ describe("SimpleSmoothScroll", function() {
             var endingOffset = window.pageYOffset;
             var distanceFromTop = 200; // The height of each element is 200px
             // We only need to get within 5 for the scroll to stop
-            expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(6);
+            expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(differenceSize);
             done();
         });
     });
@@ -45,7 +46,7 @@ describe("SimpleSmoothScroll", function() {
             var endingOffset = window.pageYOffset;
             var distanceFromTop = 400 - offset; // The height of each element is 200px
             // We only need to get within 5 for the scroll to stop
-            expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(6);
+            expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(differenceSize);
             done();
         });
     });
@@ -58,7 +59,7 @@ describe("SimpleSmoothScroll", function() {
             var endingOffset = window.pageYOffset;
             var distanceFromTop = 600; // The height of each element is 200px
             // We only need to get within 5 for the scroll to stop
-            expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(6);
+            expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(differenceSize);
             done();
         });
     });

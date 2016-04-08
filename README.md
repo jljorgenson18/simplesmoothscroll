@@ -16,8 +16,8 @@ var smoothScroll = require("simplesmoothscroll");
 smoothScroll();
 
 // Passing an element as a param scrolls you to that element
+//
 var myHeader = document.querySelector("h2");
-
 smoothScroll(myHeader);
 
 

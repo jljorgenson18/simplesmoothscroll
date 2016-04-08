@@ -69,26 +69,22 @@
         return distFromTopOfViewport + offset;
     };
 
-    // This returns a step size which essentially dictates the
-    // speed of the scroll. This math was done to make shorter scrolls
-    // go a little slower relative to the distance and longer scrolls
-    // go a little faster relative to the distance. This is essentially
-    // trial and error with some trig
-    var getStepSize = function(targetPosition) {
-        return (Math.PI * 15) / (Math.sqrt(Math.abs(targetPosition) / 1000) * 1000);
-    };
-
-    // TODO: Make the easing function customizable
-    // Essentially what is going on here is that we want the easing function
-    // to be about 0 when the scrolling starts and about 0 when the scrolling
-    // finishes. We use some trigonometry to do that
-    var getScrollMargin = function(targetPosition, stepCount, stepSize) {
-        return (targetPosition / 2) * (1 - Math.cos(stepCount * stepSize));
+    var getDefaultEasingFunction = function(targetPosition) {
+        var stepLength = 1000 / 60; // 60fps ~> 16ms per frame;
+        // We generate a duration using the targetPosition (which essentially the distance)
+        // The sqrt is used to bring the duration closer to 1s overall
+        var duration = (Math.sqrt(Math.abs(targetPosition) / 1000) * 1000);
+        var totalStepCount = Math.floor(duration / stepLength);
+        var coefficient = Math.PI / totalStepCount;
+        // Using trig to generate an easing function. It should start by
+        // returning a 0 and then end at returning 1
+        return function(stepCount) {
+            return (1 - Math.cos(coefficient * stepCount)) / 2;
+        };
     }
 
     var smoothScroll = function(ele, offset, onScrollFinished) {
         var targetPosition = getScrollTargetPosition(ele, offset);
-        var stepSize = getStepSize(targetPosition);
         var initScrollHeight = window.pageYOffset;
         var targetY = window.pageYOffset - targetPosition;
 
@@ -101,6 +97,7 @@
         window.addEventListener("wheel", onWheelListener);
 
         var stepCount = 0;
+        var differenceSize = 2;
         var scrollNotFinished;
 
 
@@ -109,20 +106,22 @@
         // our conditional when doing the raf loop
         if (targetPosition < 0) {
             scrollNotFinished = function() {
-                return window.pageYOffset < (targetY - 5) && !scrollWheelTouched;
+                return window.pageYOffset < (targetY - differenceSize) && !scrollWheelTouched;
             }
         } else {
             scrollNotFinished = function() {
-                return window.pageYOffset > (targetY + 5) && !scrollWheelTouched;
+                return window.pageYOffset > (targetY + differenceSize) && !scrollWheelTouched;
             }
         }
+
+        var easingFunc = getDefaultEasingFunction(targetPosition);
 
         // Where the loop actually starts
         var step = function() {
             // Need the - 5 due to the asymptote
             if (scrollNotFinished()) {
                 stepCount++;
-                window.scrollTo(0, (initScrollHeight - getScrollMargin(targetPosition, stepCount, stepSize)));
+                window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));
                 requestAnimationFrame(step);
             } else if (onScrollFinished) {
                 onScrollFinished(scrollWheelTouched);
