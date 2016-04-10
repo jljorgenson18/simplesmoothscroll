@@ -15,7 +15,8 @@
      *
      **/
 
-    // Object.assign
+    // Object.assign from mdn
+    /*istanbul ignore next*/
     var assign = function(target) {
         if (target === undefined || target === null) {
             throw new TypeError('Cannot convert undefined or null to object');

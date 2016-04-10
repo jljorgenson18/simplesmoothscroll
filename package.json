@@ -1,7 +1,7 @@
 {
   "name": "simplesmoothscroll",
   "version": "1.1.1",
-  "description": "A function that helps to scroll smoothly to an element",
+  "description": "A function that helps to scroll to an element smoothly",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/karma start",

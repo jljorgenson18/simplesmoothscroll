@@ -118,6 +118,27 @@ describe("SimpleSmoothScroll", function() {
         smoothScroll(testDiv, params);
     });
 
+    it("should allow a custom easing function", function(done) {
+        var testDiv = container.querySelector("#scrollDiv10");
+        // Waiting a small handleful of milliseconds and then firing
+        // the wheel event to cancel it
+        var params = {
+            getEasingFunction: function(targetPosition) {
+                return function(stepCount) {
+                    return stepCount * 0.01;
+                }
+            },
+            onScrollFinished: function() {
+                var endingOffset = window.pageYOffset;
+                var distanceFromTop = 1800; // 200 * 10 - 1;
+                // It shouldn't have gotten far in 200ms
+                expect(Math.abs(distanceFromTop - endingOffset)).toBeGreaterThan(5);
+                done();
+            }
+        };
+        smoothScroll(testDiv, params);
+    });
+
 
 
     afterEach(function() {
