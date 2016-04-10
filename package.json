@@ -4,7 +4,8 @@
   "description": "A function that helps to scroll smoothly to an element",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start"
+    "test": "./node_modules/.bin/karma start",
+    "lint": "./node_modules/.bin/eslint index.js testing/**"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/jljorgenson18/simplesmoothscroll#readme",
   "dependencies": {},
   "devDependencies": {
+    "eslint": "^2.7.0",
     "jasmine": "^2.4.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",

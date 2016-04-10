@@ -1,7 +1,6 @@
 "use strict";
 
 (function() {
-
     /**
      * There are a few descriptions of some basic dom and window
      * attributes and methods in case you get confused
@@ -15,6 +14,26 @@
      * relative to the top-left of the viewport.
      *
      **/
+
+    // Object.assign
+    var assign = function(target) {
+        if (target === undefined || target === null) {
+            throw new TypeError('Cannot convert undefined or null to object');
+        }
+
+        var output = Object(target);
+        for (var index = 1; index < arguments.length; index++) {
+            var source = arguments[index];
+            if (source !== undefined && source !== null) {
+                for (var nextKey in source) {
+                    if (source.hasOwnProperty(nextKey)) {
+                        output[nextKey] = source[nextKey];
+                    }
+                }
+            }
+        }
+        return output;
+    };
 
     var getHeightOfEntirePage = function() {
         var body = document.body;
@@ -43,7 +62,7 @@
             }
         }
         return difference;
-    }
+    };
 
     /**
      * Finds the Y-Coordinate relative to the viewport
@@ -70,10 +89,11 @@
     };
 
     var getDefaultEasingFunction = function(targetPosition) {
-        var stepLength = 1000 / 60; // 60fps ~> 16ms per frame;
-        // We generate a duration using the targetPosition (which essentially the distance)
+        var stepLength = 1000 / 60; // 60fps ~> 16.6667ms per frame;
+        var distance = Math.abs(targetPosition); // In px
+        // We generate a duration using the distance
         // The sqrt is used to bring the duration closer to 1s overall
-        var duration = (Math.sqrt(Math.abs(targetPosition) / 1000) * 1000);
+        var duration = Math.sqrt(distance / 1000) * 1000;
         var totalStepCount = Math.floor(duration / stepLength);
         var coefficient = Math.PI / totalStepCount;
         // Using trig to generate an easing function. It should start by
@@ -81,9 +101,19 @@
         return function(stepCount) {
             return (1 - Math.cos(coefficient * stepCount)) / 2;
         };
-    }
+    };
 
-    var smoothScroll = function(ele, offset, onScrollFinished) {
+    var smoothScroll = function(ele, params) {
+        // Using Object.assign to set default params
+        var params = assign({}, {
+            offset: 0,
+            onScrollFinished: null,
+            getEasingFunction: getDefaultEasingFunction
+        }, params);
+
+        var offset = params.offset;
+        var getEasingFunction = params.getEasingFunction;
+        var onScrollFinished = params.onScrollFinished;
         var targetPosition = getScrollTargetPosition(ele, offset);
         var initScrollHeight = window.pageYOffset;
         var targetY = window.pageYOffset - targetPosition;
@@ -100,21 +130,20 @@
         var roundingSize = 2;
         var scrollNotFinished;
 
-
         // Depending on if we are scrolling down or up,
         // we create a scrollNotFinished function to use as
         // our conditional when doing the raf loop
         if (targetPosition < 0) {
             scrollNotFinished = function() {
                 return window.pageYOffset < (targetY - roundingSize) && !scrollWheelTouched;
-            }
+            };
         } else {
             scrollNotFinished = function() {
                 return window.pageYOffset > (targetY + roundingSize) && !scrollWheelTouched;
-            }
+            };
         }
 
-        var easingFunc = getDefaultEasingFunction(targetPosition);
+        var easingFunc = getEasingFunction(targetPosition);
 
         // Where the loop actually starts
         var step = function() {
