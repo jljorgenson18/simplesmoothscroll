@@ -90,7 +90,7 @@ describe("SimpleSmoothScroll", function() {
                 // Since its a pain in the ass to reliably get the height
                 // of the window and find a decent range, lets just
                 // say that the distance is greater
-                expect(Math.abs(distanceFromTop - endingOffset)).toBeGreaterThan(5);
+                expect(Math.abs(distanceFromTop - endingOffset)).toBeGreaterThan(roundingSize);
                 done();
             }
         };
@@ -119,9 +119,7 @@ describe("SimpleSmoothScroll", function() {
     });
 
     it("should allow a custom easing function", function(done) {
-        var testDiv = container.querySelector("#scrollDiv10");
-        // Waiting a small handleful of milliseconds and then firing
-        // the wheel event to cancel it
+        var testDiv = container.querySelector("#scrollDiv4");
         var params = {
             getEasingFunction: function(targetPosition) {
                 return function(stepCount) {
@@ -130,9 +128,9 @@ describe("SimpleSmoothScroll", function() {
             },
             onScrollFinished: function() {
                 var endingOffset = window.pageYOffset;
-                var distanceFromTop = 1800; // 200 * 10 - 1;
+                var distanceFromTop = 600; // The height of each element is 200px
                 // It shouldn't have gotten far in 200ms
-                expect(Math.abs(distanceFromTop - endingOffset)).toBeGreaterThan(5);
+                expect(Math.abs(distanceFromTop - endingOffset)).toBeLessThan(roundingSize);
                 done();
             }
         };

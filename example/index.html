@@ -43,7 +43,14 @@
       btn.addEventListener("click", function() {
         var divId = "scrollDiv" + parseInt(Math.ceil(Math.random() * numberOfElements));
         var div = document.getElementById(divId);
-        smoothScroll(div, 10);
+        smoothScroll(div, {
+          offset: 10
+          // getEasingFunction: function(targetPosition) {
+          //     return function(stepCount) {
+          //         return stepCount * 0.01;
+          //     }
+          // }
+        });
       });
     </script>
 </body>
