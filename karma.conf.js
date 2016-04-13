@@ -23,8 +23,14 @@ module.exports = function(config) {
         // coverage reporter generates the coverage
         reporters: ['progress', 'coverage', 'kjhtml'],
         coverageReporter: {
-            type: 'html',
-            dir: 'coverage/'
+            dir: 'coverage/',
+            reporters: [{
+                type: 'html',
+                subdir: 'html'
+            }, {
+                type: 'lcov',
+                subdir: 'lcov'
+            }]
         },
         plugins: [
             'karma-fixture',

@@ -129,33 +129,38 @@
 
         var stepCount = 0;
         var roundingSize = 2;
-        var scrollNotFinished;
+        // Generating an easing function
+        var easingFunc = getEasingFunction(targetPosition);
+
+        // initializing our step function
+        var step;
 
         // Depending on if we are scrolling down or up,
-        // we create a scrollNotFinished function to use as
-        // our conditional when doing the raf loop
+        // we create a different step function to tweak
+        // our conditional
         if (targetPosition < 0) {
-            scrollNotFinished = function() {
-                return window.pageYOffset < (targetY - roundingSize) && !scrollWheelTouched;
+            step = function() {
+                if (window.pageYOffset < (targetY - roundingSize) && !scrollWheelTouched) {
+                    stepCount++;
+                    window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));
+                    requestAnimationFrame(step);
+                } else if (onScrollFinished) {
+                    onScrollFinished(scrollWheelTouched);
+                }
             };
         } else {
-            scrollNotFinished = function() {
-                return window.pageYOffset > (targetY + roundingSize) && !scrollWheelTouched;
+            step = function() {
+                if (window.pageYOffset > (targetY + roundingSize) && !scrollWheelTouched) {
+                    stepCount++;
+                    window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));
+                    requestAnimationFrame(step);
+                } else if (onScrollFinished) {
+                    onScrollFinished(scrollWheelTouched);
+                }
             };
         }
 
-        var easingFunc = getEasingFunction(targetPosition);
-
         // Where the loop actually starts
-        var step = function() {
-            if (scrollNotFinished()) {
-                stepCount++;
-                window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));
-                requestAnimationFrame(step);
-            } else if (onScrollFinished) {
-                onScrollFinished(scrollWheelTouched);
-            }
-        };
         requestAnimationFrame(step);
 
     };
