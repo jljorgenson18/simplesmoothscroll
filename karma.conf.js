@@ -3,7 +3,8 @@ module.exports = function(config) {
         frameworks: ['jasmine', 'fixture'],
         files: [
             "index.js",
-            "testing/**/*.js",
+            "testing/helpers/**/*.js",
+            "testing/specs/**/*.js",
             "testing/**/*.html"
         ],
         browsers: [

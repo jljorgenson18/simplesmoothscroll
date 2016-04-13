@@ -4,7 +4,8 @@
   "description": "A function that helps to scroll to an element smoothly",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start",
+    "test": "./node_modules/.bin/karma start --single-run --browsers Firefox",
+    "testAll": "./node_modules/.bin/karma start --single-run",
     "lint": "./node_modules/.bin/eslint index.js testing/**"
   },
   "repository": {
