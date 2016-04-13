@@ -1,4 +1,11 @@
 # simplesmoothscroll
+
+[![npm version](https://badge.fury.io/js/simplesmoothscroll.svg)](https://badge.fury.io/js/simplesmoothscroll)
+[![Build Status](https://travis-ci.org/jljorgenson18/simplesmoothscroll.svg?branch=master)](https://travis-ci.org/jljorgenson18/simplesmoothscroll)
+[![Code Climate] (https://codeclimate.com/github/jljorgenson18/simplesmoothscroll/badges/gpa.svg)](https://codeclimate.com/github/jljorgenson18/simplesmoothscroll)
+[![Test Coverage] (https://codeclimate.com/github/jljorgenson18/simplesmoothscroll/badges/coverage.svg)](https://codeclimate.com/github/jljorgenson18/simplesmoothscroll/coverage)
+[!https://david-dm.org/jljorgenson18/simplesmoothscroll.svg]
+
 A module to simply scroll to an element on the page in a buttery smooth fashion
 - No dependencies
 - CommonJS, AMD, and Browser ready
