@@ -87,6 +87,10 @@ My goal here is to make the scroll as performant and smooth as possible. If ther
 
 ## Changelog
 
+### 2.0.1
+* Performance tweak
+* Updating README
+
 ### 2.0.0
 * Breaking: Moved offset and onScrollFinished into an options arg
 * Made the second parameter on the smoothScroll function into an options object
