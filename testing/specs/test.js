@@ -124,7 +124,7 @@ describe("SimpleSmoothScroll", function() {
             getEasingFunction: function(targetPosition) {
                 return function(stepCount) {
                     return stepCount * 0.01;
-                }
+                };
             },
             onScrollFinished: function() {
                 var endingOffset = window.pageYOffset;
