@@ -10,7 +10,7 @@ A module to simply scroll to an element on the page in a buttery smooth fashion
 - No dependencies
 - CommonJS, AMD, and Browser ready
 
-# [DEMO!](http://jljorgenson18.github.io/simplesmoothscroll/)
+# [DEMO!](http://simplesmoothscroll.com)
 
 ## What is it?
 Simple smooth scroll takes in a dom element and scrolls to that element in an ease-in-out fashion. It can work on elements that are above the current window position or below the current window position
