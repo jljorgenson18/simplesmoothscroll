@@ -1,0 +1,112 @@
+<html>
+    <title>Smooth Scroll Demo</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="./demoAssets/materialize.min.css" media="screen,projection">
+    <link rel="stylesheet" href="./demoAssets/style.css" media="screen,projection">
+    <link rel="stylesheet" href='./demoAssets/syntax.css' media="screen,projection">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./demoAssets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./demoAssets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./demoAssets/favicon/favicon-16x16.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="./demoAssets/favicon/favicon.ico">
+
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">SimpleSmoothScroll</a>
+                <ul class="right">
+                    <li><a href="https://github.com/jljorgenson18/simplesmoothscroll">Github</a></li>
+                    <li><a href="https://www.npmjs.com/package/simplesmoothscroll">Npm</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class='demoContainer'>
+
+            <div class="card" id="firstSection">
+                <div class="card-content">
+                    <p>First. We can scroll to an element!</p>
+                    <pre>
+                      <code class='language-javascript code-block-1'>
+smoothScroll(myElement);
+                      </code>
+                      <code class='language-javascript code-block-2' style='height: 0; visibility: hidden;'>
+smoothScroll(myElement, {
+  offset: 30
+});
+                      </code>
+                    </pre>
+                </div>
+                <div class='card-action'>
+                    <button id='scroller1' class='waves-effect waves-light btn-large'>Scroll There!</button>
+                </div>
+            </div>
+            <div class="card blue-grey lighten-3" id="secondSection">
+                <div class="card-content">
+                    <p>If you pass no parameters, you scroll to the top</p>
+                    <pre>
+                    <code class='language-javascript'>
+smoothScroll();
+                    </code>
+                    </pre>
+                </div>
+                <div class='card-action'>
+                    <button id='scroller2' class='waves-effect waves-light btn-large'>Scroll There!</button>
+                </div>
+            </div>
+            <div class="card" id="thirdSection">
+                <div class="card-content">
+                    <p>Notice the extra space above? That is the offset!</p>
+                    <p>SimpleSmoothScroll also factors in the bottom of the page to make sure we are always easing</p>
+                    <pre>
+                  <code class='language-javascript'>
+smoothScroll(footer);
+                  </code>
+                  </pre>
+                </div>
+                <div class='card-action'>
+                    <button id='scroller3' class='waves-effect waves-light btn-large'>To the Footer!</button>
+                </div>
+            </div>
+            <div class="card blue-grey lighten-3" id='fourthSection'>
+                <div class="card-content">
+                    <p>Lastly, we can add custom easing functions. These are used when you want to get to your element in a different fashion from ease-in-out. Below is an example of a linear easing function</p>
+                    <pre>
+                  <code class='language-javascript'>
+smoothScroll(myElement, {
+  getEasingFunction: function(targetPosition) {
+    return function(stepCount) {
+      return stepCount * 0.01;
+    }
+  }
+});
+                  </code>
+                  </pre>
+                </div>
+                <div class='card-action'>
+                    <button id='scroller5' class='waves-effect waves-light btn-large'>Scroll There!</button>
+                </div>
+            </div>
+
+            <div class="card finalCard teal lighten-3" id='finalSection'>
+                <div class="card-content">
+                    <h3>Thank you for checking out SimpleSmoothScroll!</h3>
+                    <div class="collection">
+                        <a href="https://github.com/jljorgenson18/simplesmoothscroll" class="collection-item">Github</a>
+                        <a href="https://www.npmjs.com/package/simplesmoothscroll" class="collection-item">Npm</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <footer class='page-footer grey darken-3'>
+            <p>Even scrolling to the footer works just fine!</p>
+            <button id='scroller4' class='waves-effect waves-light btn-large'>Back to the demo section</button>
+        </footer>
+        <script src="./index.js"></script>
+        <script src='./demoAssets/highlight.pack.js'></script>
+        <script src='./demoAssets/demo.js'></script>
+    </body>
+
+</html>
