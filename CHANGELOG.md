@@ -1,5 +1,11 @@
 # Changelog
 
+### 2.0.2
+* Upgrading DevDependencies
+* Adding Demo
+* Splitting out ChangeLog
+* Formatting index.js and tests
+ 
 ### 2.0.1
 * Performance tweak
 * Updating README
