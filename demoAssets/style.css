@@ -1,0 +1,43 @@
+p, nav, footer {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #eceff1;
+}
+
+code {
+  font-size: 18px;
+}
+
+p {
+  font-size: 16px;
+}
+
+pre {
+  width: auto;
+}
+
+nav .brand-logo {
+  margin: 0 16px;
+}
+
+.demoContainer {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 36px;
+}
+
+.card {
+  margin-bottom: 320px;
+}
+
+.finalCard {
+  margin-bottom: 600px;
+}
+
+footer {
+  width: 100%;
+  padding: 32px;
+  color: #FFF;
+}
