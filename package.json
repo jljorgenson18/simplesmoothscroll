@@ -27,7 +27,7 @@
   "homepage": "https://github.com/jljorgenson18/simplesmoothscroll#readme",
   "dependencies": {},
   "devDependencies": {
-    "codeclimate-test-reporter": "^0.4.0",
+    "codeclimate-test-reporter": "^0.5.0",
     "eslint": "^3.15.0",
     "jasmine": "^2.4.1",
     "karma": "^1.4.1",
@@ -38,7 +38,6 @@
     "karma-html2js-preprocessor": "^1.1.0",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.0",
-    "karma-opera-launcher": "^1.0.0",
     "karma-safari-launcher": "^1.0.0"
   }
 }
