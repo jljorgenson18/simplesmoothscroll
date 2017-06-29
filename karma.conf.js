@@ -2,7 +2,7 @@
 
 module.exports = function(config) {
   config.set({
-    frameworks: ['jasmine', 'fixture'],
+    frameworks: ['mocha', 'chai', 'fixture'],
     files: [
       "index.js",
       "testing/helpers/**/*.js",
@@ -22,7 +22,7 @@ module.exports = function(config) {
       "testing/**/*.html": ['html2js']
     },
     // coverage reporter generates the coverage
-    reporters: ['progress', 'coverage', 'kjhtml'],
+    reporters: ['progress', 'coverage'],
     coverageReporter: {
       dir: 'coverage/',
       reporters: [{
@@ -35,11 +35,11 @@ module.exports = function(config) {
     },
     plugins: [
       'karma-fixture',
-      'karma-jasmine',
+      'karma-mocha',
+      'karma-chai',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       "karma-safari-launcher",
-      'karma-jasmine-html-reporter',
       'karma-coverage',
       'karma-html2js-preprocessor'
     ]
