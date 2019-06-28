@@ -18,7 +18,7 @@
   // Object.assign from mdn
   var assign = function(target) {
     if (target === undefined || target === null) {
-      throw new TypeError('Cannot convert undefined or null to object');
+      throw new TypeError("Cannot convert undefined or null to object");
     }
 
     var output = Object(target);
@@ -39,12 +39,19 @@
     var body = document.body;
     var html = document.documentElement;
 
-    return Math.max(body.scrollHeight, body.offsetHeight,
-      html.clientHeight, html.scrollHeight, html.offsetHeight);
+    return Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
   };
 
   var getHeightOfWindow = function() {
-    return ("innerHeight" in window) ? window.innerHeight : document.documentElement.offsetHeight;
+    return "innerHeight" in window
+      ? window.innerHeight
+      : document.documentElement.offsetHeight;
   };
 
   // Returns 0 if it doesn't pass the bottom or
@@ -105,11 +112,15 @@
 
   var smoothScroll = function(ele, params) {
     // Using Object.assign to set default params
-    var params = assign({}, {
-      offset: 0,
-      onScrollFinished: null,
-      getEasingFunction: getDefaultEasingFunction
-    }, params);
+    var params = assign(
+      {},
+      {
+        offset: 0,
+        onScrollFinished: null,
+        getEasingFunction: getDefaultEasingFunction
+      },
+      params
+    );
 
     var offset = params.offset;
     var getEasingFunction = params.getEasingFunction;
@@ -139,9 +150,15 @@
     // our conditional
     if (targetPosition < 0) {
       step = function() {
-        if (window.pageYOffset < (targetY - roundingSize) && !scrollWheelTouched) {
+        if (
+          window.pageYOffset < targetY - roundingSize &&
+          !scrollWheelTouched
+        ) {
           stepCount++;
-          window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));
+          window.scrollTo(
+            0,
+            initScrollHeight - targetPosition * easingFunc(stepCount)
+          );
           requestAnimationFrame(step);
         } else if (onScrollFinished) {
           onScrollFinished(scrollWheelTouched);
@@ -149,9 +166,15 @@
       };
     } else {
       step = function() {
-        if (window.pageYOffset > (targetY + roundingSize) && !scrollWheelTouched) {
+        if (
+          window.pageYOffset > targetY + roundingSize &&
+          !scrollWheelTouched
+        ) {
           stepCount++;
-          window.scrollTo(0, (initScrollHeight - targetPosition * easingFunc(stepCount)));
+          window.scrollTo(
+            0,
+            initScrollHeight - targetPosition * easingFunc(stepCount)
+          );
           requestAnimationFrame(step);
         } else if (onScrollFinished) {
           onScrollFinished(scrollWheelTouched);
@@ -161,14 +184,13 @@
 
     // Where the loop actually starts
     requestAnimationFrame(step);
-
   };
 
   /*istanbul ignore next*/
-  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+  if (typeof module !== "undefined" && typeof module.exports !== "undefined") {
     module.exports = smoothScroll;
   } else {
-    if (typeof define === 'function' && define.amd) {
+    if (typeof define === "function" && define.amd) {
       define([], function() {
         return smoothScroll;
       });
