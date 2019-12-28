@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-  - "8"
+  - "12"
 addons:
-  addons:
-    firefox: "latest"
+  firefox: "latest"
 after_script:
   - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov/lcov.info

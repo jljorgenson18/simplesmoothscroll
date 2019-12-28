@@ -3,12 +3,7 @@
 module.exports = function(config) {
   config.set({
     frameworks: ["mocha", "chai", "fixture"],
-    files: [
-      "index.js",
-      "testing/helpers/**/*.js",
-      "testing/specs/**/*.js",
-      "testing/**/*.html"
-    ],
+    files: ["index.js", "testing/specs/**/*.js", "testing/**/*.html"],
     browsers: ["Chrome", "Firefox", "Safari"],
     preprocessors: {
       // source files, that you wanna generate coverage for
