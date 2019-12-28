@@ -2,11 +2,7 @@ language: node_js
 node_js:
   - "8"
 addons:
-  code_climate:
-    repo_token: 9cbd79a1019e53a24491c0c16bad93c264f8070a8b0dd412b3f0e64cbd1e1c17
-# Setting up Firefox usage
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  addons:
+    firefox: "latest"
 after_script:
   - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov/lcov.info
