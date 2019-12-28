@@ -8,7 +8,7 @@ A module to simply scroll to an element on the page in a buttery smooth fashion
 - No dependencies
 - CommonJS, AMD, and Browser ready
 
-## [DEMO!](https://github.com/jljorgenson18/simplesmoothscroll)
+## [DEMO!](https://jljorgenson18.github.io/simplesmoothscroll/)
 
 ## What is it?
 
